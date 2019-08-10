@@ -1,0 +1,21 @@
+---
+
+- name: install redis
+  apt:
+    name:
+      - redis-server
+      - redis-tools
+      - redis-sentinel
+    state: present
+
+# Work around the following bug:
+#
+# - https://github.com/antirez/redis/issues/5055
+- name: disable IPv6 on Ubuntu
+  lineinfile:
+    path: /etc/redis/redis.conf
+    regexp: 'bind .*'
+    line: "bind 127.0.0.1"
+  when: >
+    ansible_distribution == "Ubuntu" and
+    ansible_distribution_version == "18.04"

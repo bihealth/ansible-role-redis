@@ -1,0 +1,12 @@
+---
+
+- name: Converge
+  hosts: all
+  pre_tasks:
+  - name: Install netstat on Debian/RedHat family
+    package: name=net-tools state=present update_cache=true
+    when: >
+      ansible_os_family == "Debian" or
+      ansible_os_family == "RedHat"
+  roles:
+    - role: ansible-role-redis
