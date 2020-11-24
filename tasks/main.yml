@@ -3,5 +3,8 @@
 - name: perform installation
   include_tasks: install/{{ ansible_os_family }}.yml
 
+- name: perform configuration
+  include_tasks: configure/{{ ansible_os_family }}.yml
+
 - name: enable and start redis
   systemd: name=redis state=started enabled=true

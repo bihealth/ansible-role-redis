@@ -1,0 +1,8 @@
+- name: install configuration
+  template:
+    src: redis.conf.j2
+    dest: /etc/redis.conf
+    owner: redis
+    group: redis
+    mode: u=rw,g=r,o=
+  notify: restart redis
