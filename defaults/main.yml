@@ -1,1 +1,8 @@
+# Number of redis databases to create.
 redis_databases: 16
+
+# Setting for `max_memory` in `redis.conf`.  Set to 0 to disable the setting.
+redis_maxmemory: "{{ 1024 * 1024 * 1024 }}"  # 1GB
+
+# The memory policy to use. Set to false/empty string to disable.
+redis_maxmemory_policy: allkeys-lru
